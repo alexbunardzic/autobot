@@ -1,6 +1,8 @@
 <h1>Signup</h1>
 <br />
 <%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages' %>
+
   <table>
     <tr><td>Name:</td><td><%= f.text_field :name %></td></tr>
     <tr><td>Email:</td><td><%= f.text_field :email %></td></tr>
