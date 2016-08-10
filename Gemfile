@@ -19,6 +19,8 @@ end
 gem 'bootstrap-sass'
 gem 'high_voltage'
 group :development do
+  gem 'pry-rails'
+  gem 'pry-rescue'
   gem 'better_errors'
   gem 'rails_layout'
   gem 'spring-commands-rspec'

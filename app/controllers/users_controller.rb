@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  	  log_in @user
+  	  #log_in @user
+      session[:user_id] = @user.id
   	  flash[:success] = "You're now successfully registered."
   	  redirect_to root_url
   	else

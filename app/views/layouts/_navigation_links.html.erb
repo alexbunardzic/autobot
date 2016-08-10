@@ -1,8 +1,9 @@
 <%# add navigation links to this file %>
 <li><%= link_to 'About', page_path('about') %></li>
 <% if logged_in? %>
-  <li></li>
+  <li><%= link_to "Logged in as: #{current_user.email}", users_path(current_user) %></li>
   <li><%= link_to "Logout", logout_path, method: "delete" %></li>
 <% else %>
   <li><%= link_to "Log in", login_path %></li>
+  <li><%= link_to "New user? Sign up now!", new_users_path %></li>
 <% end %>
