@@ -1,2 +1,8 @@
 <%# add navigation links to this file %>
 <li><%= link_to 'About', page_path('about') %></li>
+<% if logged_in? %>
+  <li></li>
+  <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+<% else %>
+  <li><%= link_to "Log in", login_path %></li>
+<% end %>
