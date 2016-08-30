@@ -154,6 +154,7 @@ GEM
     pry-rescue (1.4.4)
       interception (>= 0.5)
       pry
+    puma (2.16.0)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -299,6 +300,7 @@ DEPENDENCIES
   pg (= 0.18.4)
   pry-rails
   pry-rescue
+  puma
   rails (= 4.2.6)
   rails_12factor (= 0.0.2)
   rails_admin
