@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :conversations
+  resources :conversations do
+    collection do
+      post 'webhook'
+    end
+  end
   get 'static_pages/chat'
 
   resources :brands
