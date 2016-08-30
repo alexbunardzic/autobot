@@ -11,7 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809001517) do
+ActiveRecord::Schema.define(version: 20160824235804) do
+
+  create_table "brands", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "brands", ["name"], name: "index_brands_on_name", unique: true
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "user_says"
+    t.string   "bot_says"
+    t.string   "next_step"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id"
+
+  create_table "product_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "product_types", ["name"], name: "index_product_types_on_name", unique: true
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "product_type_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active",          default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "products", ["name"], name: "index_products_on_name", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

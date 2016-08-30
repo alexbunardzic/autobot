@@ -1,0 +1,26 @@
+<h1>Product Types</h1>
+<br />
+
+<table>
+  <thead>
+    <tr>
+      <th align="left" valign="top">Name&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top">Description&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" colspan="3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_types.each do |type| %>
+      <tr>
+        <td valign="top"><%= link_to "#{type.name}", type %>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top"><%= type.description %>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top"><%= link_to "Add Products", product_type_path(type) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product Type', new_product_type_path %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :conversations
+  get 'static_pages/chat'
+
+  resources :brands
+  resources :products
   resources :product_types
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
