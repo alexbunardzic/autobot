@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :conversations do
     collection do
-      post 'webhook'
+      get 'webhook'
     end
   end
   get 'static_pages/chat'
