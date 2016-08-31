@@ -4,6 +4,11 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def show
+    @product = Product.find(params[:id])
+    @brands = @product.brands
+  end
+
   def create
     @product = Product.new(product_params)
     @product_type = ProductType.find(params[:product][:product_type_id])

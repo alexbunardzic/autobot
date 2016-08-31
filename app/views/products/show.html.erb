@@ -1,0 +1,39 @@
+<h1>PRODUCT: <%= @product.name %></h1>
+<br />
+<p>
+<% if @brands.size == 0 %>
+  You have not added any Brands to this Product.<br /><br />
+  <%= link_to "Add new Brand to Product: #{@product.name}", new_brand_path(:product_id => @product.id) %>
+<% else %>
+  <table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Description</th>
+      <th></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @brands.each do |brand| %>
+      <tr>
+        <td><%= brand.name %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><%= brand.description %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><%= link_to(image_tag("plus.png", :alt => "add", :title => "Add brand"), new_brand_path(:brand_id => brand.id)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit brand"), edit_brand_path(:brand_id => brand.id)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete brand"), brand, method: :delete, data: { confirm: 'Are you sure?' }) %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <br />
+  <%= link_to "Add new Brand to Product: #{@product.name}", new_brand_path(:product_id => @product.id) %>
+<% end %>
+
+<br /><br /><%= link_to 'Back', product_type_path(@product.product_type_id) %>
