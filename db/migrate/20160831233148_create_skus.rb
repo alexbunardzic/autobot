@@ -9,7 +9,7 @@ class CreateSkus < ActiveRecord::Migration
       t.decimal :weight, precision: 8, scale: 2
       t.decimal :width, precision: 8, scale: 2
       t.decimal :height, precision: 8, scale: 2
-      t.decimal  :price, precision: 8, scale: 2
+      t.decimal :price, precision: 8, scale: 2
       t.string :material
       t.text :other_attributes
       t.boolean :active, :default => true
