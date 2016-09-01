@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @context_category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @context_category.description %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @context_category.active %>
+</p>
+
+<%= link_to 'Edit', edit_context_category_path(@context_category) %> |
+<%= link_to 'Back', context_categories_path %>

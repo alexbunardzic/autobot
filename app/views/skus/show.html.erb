@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sku.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sku.description %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @sku.quantity %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @sku.color %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @sku.weight %>
+</p>
+
+<p>
+  <strong>Width:</strong>
+  <%= @sku.width %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @sku.height %>
+</p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @sku.material %>
+</p>
+
+<p>
+  <strong>Attributes:</strong>
+  <%= @sku.attributes %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @sku.active %>
+</p>
+
+<%= link_to 'Edit', edit_sku_path(@sku) %> |
+<%= link_to 'Back', skus_path %>

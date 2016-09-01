@@ -1,0 +1,1 @@
+json.array! @context_categories, partial: 'context_categories/context_category', as: :context_category

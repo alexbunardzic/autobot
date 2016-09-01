@@ -25,7 +25,8 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td><%= link_to(image_tag("plus.png", :alt => "add", :title => "Add brand"), new_brand_path(:product_id => product.id)) %></td>
         <td>&nbsp;</td>
-        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit product"), edit_product_path(:product_id => product.id)) %></td>
+        <!--td><%#= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit product"), edit_product_path(:product_id => product.id)) %></td-->
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit product"), edit_product_path(product)) %></td>
         <td>&nbsp;</td>
         <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete product"), product, method: :delete, data: { confirm: 'Are you sure?' }) %>
       </tr>

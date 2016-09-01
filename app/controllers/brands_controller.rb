@@ -1,4 +1,11 @@
 class BrandsController < ApplicationController
+  before_action :logged_in_user
+
+  def show
+    @brand = Brand.find(params[:id])
+    @skus = @brand.skus
+  end
+
   def new
     @product = Product.find(params[:product_id])
     @brand = Brand.new
@@ -11,7 +18,7 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to show_product_types_path(@product.product_type_id), notice: 'Brand was successfully created.' }
+        format.html { redirect_to product_path(@product.id), notice: 'Brand was successfully created.' }
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new }

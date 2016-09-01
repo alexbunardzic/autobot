@@ -1,4 +1,6 @@
 class ProductTypesController < ApplicationController
+  before_action :logged_in_user
+
   def index
   	@product_types = ProductType.where("active = ?", true)
   end

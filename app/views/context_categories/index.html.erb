@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Context Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @context_categories.each do |context_category| %>
+      <tr>
+        <td><%= context_category.name %></td>
+        <td><%= context_category.description %></td>
+        <td><%= context_category.active %></td>
+        <td><%= link_to 'Show', context_category %></td>
+        <td><%= link_to 'Edit', edit_context_category_path(context_category) %></td>
+        <td><%= link_to 'Destroy', context_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Context category', new_context_category_path %>

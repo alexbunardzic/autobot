@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :skus
+  resources :context_categories
   resources :conversations do
     collection do
       get 'webhook'
