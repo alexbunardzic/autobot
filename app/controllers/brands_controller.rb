@@ -27,6 +27,23 @@ class BrandsController < ApplicationController
     end
   end
 
+  def edit
+    @brand = Brand.find(params[:id])
+  end
+
+  def update
+    @brand = Brand.find(params[:id])
+    respond_to do |format|
+      if @brand.update(brand_params)
+        format.html { redirect_to product_path(@brand.product_id), notice: 'Brand was successfully updated.' }
+        format.json { render :show, status: :ok, location: @brand }
+      else
+        format.html { render :edit }
+        format.json { render json: @brand.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

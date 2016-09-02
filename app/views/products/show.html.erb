@@ -25,7 +25,7 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td><%= link_to(image_tag("plus.png", :alt => "add", :title => "Add SKU"), new_sku_path(:brand_id => brand.id)) %></td>
         <td>&nbsp;</td>
-        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit brand"), edit_brand_path(:brand_id => brand.id)) %></td>
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit #{brand.name}"), edit_brand_path(brand)) %></td>
         <td>&nbsp;</td>
         <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete brand"), brand, method: :delete, data: { confirm: 'Are you sure?' }) %>
       </tr>

@@ -35,7 +35,7 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <td align="right"><%= sku.price %></td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit SKU"), edit_sku_path(:sku_id => sku.id)) %></td>
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit SKU #{sku.name}"), edit_sku_path(sku)) %></td>
         <td>&nbsp;</td>
         <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete SKU"), sku, method: :delete, data: { confirm: 'Are you sure?' }) %>
       </tr>

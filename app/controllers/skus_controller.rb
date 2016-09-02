@@ -46,7 +46,7 @@ class SkusController < ApplicationController
   def update
     respond_to do |format|
       if @sku.update(sku_params)
-        format.html { redirect_to @sku, notice: 'Sku was successfully updated.' }
+        format.html { redirect_to brand_path(@sku.brand_id), notice: 'Sku was successfully updated.' }
         format.json { render :show, status: :ok, location: @sku }
       else
         format.html { render :edit }
