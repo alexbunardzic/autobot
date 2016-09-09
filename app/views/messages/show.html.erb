@@ -10,10 +10,12 @@
 <% if @ordered_answers.size > 1 %>
   <font size="4">Here are other possible answers, ranked from most suitable to least suitable for this message <em><%= @message.body %></em>:
   <br /><br />
+  <ul>
   <% @ordered_answers.each do |answer| %>
-    <font size="5"><em><%= link_to "#{answer.reply}", answer_path(answer) %></em></font> <font size="2">(Upvotes: <%= answer.upvotes %>)</font>
+    <li><font size="3"><em><%= link_to "#{answer.reply}", answer_path(answer) %></em></font>&nbsp;&nbsp;<font size="2">(Upvotes: <%= answer.upvotes %>)</font></li>
     <br />
   <% end %>
+  </ul>
 <% else %>
     I wasn't able to find any other possible answers to this intent.
 <% end %>
