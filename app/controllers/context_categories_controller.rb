@@ -4,7 +4,7 @@ class ContextCategoriesController < ApplicationController
   # GET /context_categories
   # GET /context_categories.json
   def index
-    @context_categories = ContextCategory.all
+    @context_categories = ContextCategory.where("active = ?", true)
   end
 
   # GET /context_categories/1
@@ -28,7 +28,7 @@ class ContextCategoriesController < ApplicationController
 
     respond_to do |format|
       if @context_category.save
-        format.html { redirect_to @context_category, notice: 'Context category was successfully created.' }
+        format.html { redirect_to context_categories_path, notice: 'Context category was successfully created.' }
         format.json { render :show, status: :created, location: @context_category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ContextCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @context_category.update(context_category_params)
-        format.html { redirect_to @context_category, notice: 'Context category was successfully updated.' }
+        format.html { redirect_to context_categories_path, notice: 'Context category was successfully updated.' }
         format.json { render :show, status: :ok, location: @context_category }
       else
         format.html { render :edit }

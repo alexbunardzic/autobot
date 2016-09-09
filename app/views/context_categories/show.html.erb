@@ -1,19 +1,43 @@
-<p id="notice"><%= notice %></p>
-
+<h1>CONTEXT CATEGORY: <%= @context_category.name %></h1>
+<br />
 <p>
-  <strong>Name:</strong>
-  <%= @context_category.name %>
-</p>
+<% if @context_category.contexts.size == 0 %>
+  You have not added any Contexts to this Context Category.<br /><br />
+  <%= link_to "Add new Context to Context Category: #{@context_category.name}", new_context_path(:context_category_id => @context_category.id) %>
+<% else %>
+  <table>
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Description</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top"># Intents</th>
+      <th></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Description:</strong>
-  <%= @context_category.description %>
-</p>
+  <tbody>
+    <% @context_category.contexts.each do |context| %>
+      <tr>
+        <td><%= link_to "#{context.name}", context_path(context) %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><%= context.description %></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" align="right"><%= link_to "#{context.intents.size}", context_path(context) %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><%= link_to(image_tag("plus.png", :alt => "add", :title => "Add intent"), new_intent_path(:context_id => context.id)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit context"), edit_context_path(context)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete context"), context, method: :delete, data: { confirm: 'Are you sure?' }) %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <br />
+  <%= link_to "Add new Context to Context Category: #{@context_category.name}", new_context_path(:context_category_id => @context_category.id) %>
+<% end %>
 
-<p>
-  <strong>Active:</strong>
-  <%= @context_category.active %>
-</p>
-
-<%= link_to 'Edit', edit_context_category_path(@context_category) %> |
-<%= link_to 'Back', context_categories_path %>
+<br /><br /><%= link_to 'Back', context_categories_path %>

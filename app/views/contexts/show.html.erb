@@ -1,0 +1,43 @@
+<h1>CONTEXT: <%= @context.name %></h1>
+<br />
+<p>
+<% if @context.intents.size == 0 %>
+  You have not added any Intents to this Context.<br /><br />
+  <%= link_to "Add new Intent to Context: #{@context.name}", new_intent_path(:context_id => @context.id) %>
+<% else %>
+  <table>
+  <thead>
+    <tr>
+      <th>Intent</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Description</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top"># Answers</th>
+      <th></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @context.intents.each do |intent| %>
+      <tr>
+        <td><%= link_to "#{intent.name}", intent_path(intent)  %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><%= intent.description %></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" align="right"><%= link_to "#{intent.answers.size}", intent_path(intent) %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><%= link_to(image_tag("plus.png", :alt => "add", :title => "Add answer"), new_answer_path(:intent_id => intent.id)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit intent"), edit_intent_path(intent)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete intent"), intent, method: :delete, data: { confirm: 'Are you sure?' }) %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <br />
+  <%= link_to "Add new Intent to Context: #{@context.name}", new_intent_path(:context_id => @context.id) %>
+<% end %>
+
+<br /><br /><%= link_to 'Back', context_category_path(@context.context_category_id) %>

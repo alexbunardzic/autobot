@@ -4,13 +4,18 @@
     <!-- Heading Row -->
     <div class="row">
         <div class="col-md-8">
-            <img class="img-responsive img-rounded" src="autobot.jpg" alt="">
+            <img class="img-responsive img-rounded" src="salesbot.jpg" alt="">
         </div>
         <!-- /.col-md-8 -->
         <div class="col-md-4">
-            <h1>Autobot</h1>
-            <p>Buying a car? Selling a car?</p>
-            <a class="btn btn-primary btn-lg" href="#">Get Started!</a>
+            <h1>Salesbot</h1>
+            <p>Ready to start selling?</p>
+            <% if !logged_in? %>
+              <a class="btn btn-primary btn-lg" <%= link_to "Get Started!", login_path %>
+            <% else %>
+              <a class="btn btn-primary btn-lg" <%= link_to "Get Started!", context_categories_path %>
+            <% end %>
+            </a>
         </div>
         <!-- /.col-md-4 -->
     </div>
@@ -33,13 +38,13 @@
     <div class="row">
         <div class="col-md-4">
             <h2>Automate Interaction with Customers</h2>
-            <p>Confused customer is not going to buy. Eliminate all confusion by following the advice of the fully trained digital sales assistant -- Autobot.</p>
+            <p>Confused customer is not going to buy. Eliminate all confusion by following the advice of the fully trained digital sales assistant -- Salesbot.</p>
             <a class="btn btn-default" href="#">More Info</a>
         </div>
         <!-- /.col-md-4 -->
         <div class="col-md-4">
             <h2>Access Best Expertise in Industry</h2>
-            <p>Our digital sales assistant has been trained by the top experts in the industry. Autobot is capable of detecting nuances in the messages received from customers and can then suggest the best, most appropriate response to the sales reps.</p>
+            <p>Our digital sales assistant has been trained by the top experts in the industry. Salesbot is capable of detecting nuances in the messages received from customers and can then suggest the best, most appropriate response to the sales reps.</p>
             <a class="btn btn-default" href="#">More Info</a>
         </div>
         <!-- /.col-md-4 -->
@@ -56,7 +61,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Autobot 2016</p>
+                <p>Copyright &copy; Salesbot 2016</p>
             </div>
         </div>
     </footer>

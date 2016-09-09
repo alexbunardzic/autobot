@@ -1,0 +1,41 @@
+<h1>INTENT: <%= @intent.name %></h1>
+<br />
+<p>
+<% if @intent.answers.size == 0 %>
+  You have not added any Answers to this Intent.<br /><br />
+  <%= link_to "Add new Answer to Intent: #{@intent.name}", new_answer_path(:intent_id => @intent.id) %>
+<% else %>
+  <table>
+  <thead>
+    <tr>
+      <th>Reply</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top">Upvotes</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top">Downvotes</th>
+      <th></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @intent.answers.each do |answer| %>
+      <tr>
+        <td><em><%= answer.reply %></em></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" align="right"><%= answer.upvotes %></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" align="right"><%= answer.downvotes %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit answer"), edit_answer_path(answer)) %></td>
+        <td>&nbsp;</td>
+        <td><%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete answer"), answer, method: :delete, data: { confirm: 'Are you sure?' }) %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <br />
+  <%= link_to "Add new Answer to Intent: #{@intent.name}", new_answer_path(:intent_id => @intent.id) %>
+<% end %>
+
+<br /><br /><%= link_to 'Back', context_path(@intent.context_id) %>

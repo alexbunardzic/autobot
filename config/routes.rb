@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  resources :messages do
+    member do
+      get 'categorize'
+      get 'associate'
+    end
+  end
+  resources :answers do
+    member do
+      get 'automatic'
+    end
+  end
+  resources :intents
+  resources :contexts
   resources :skus
   resources :context_categories
   resources :conversations do

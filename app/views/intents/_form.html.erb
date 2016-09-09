@@ -1,16 +1,17 @@
-<%= form_for(@context_category) do |f| %>
-  <% if @context_category.errors.any? %>
+<%= form_for(@intent) do |f| %>
+  <% if @intent.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@context_category.errors.count, "error") %> prohibited this context_category from being saved:</h2>
+      <h2><%= pluralize(@intent.errors.count, "error") %> prohibited this intent from being saved:</h2>
 
       <ul>
-      <% @context_category.errors.full_messages.each do |message| %>
+      <% @intent.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
+  <% if !@context.nil? %><%= f.hidden_field :context_id, { value: "#{@context.id}" } %><% end %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -23,8 +24,7 @@
     <%= f.label :active %><br>
     <%= f.check_box :active %>
   </div>
-  <br />
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit %>
   </div>
 <% end %>

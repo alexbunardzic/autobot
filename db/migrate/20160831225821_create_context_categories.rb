@@ -8,6 +8,6 @@ class CreateContextCategories < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :context_categories, :name
+    add_index :context_categories, :name, unique: true
   end
 end

@@ -1,0 +1,33 @@
+<br />
+<font size="6"><strong>Bot Says</strong></font>
+<br /><br />
+<% if @answers.size > 0 %>
+  <font size="4">
+  I found these answers for the detected intent <em>(<%= @intent.name %>)</em>; please select the most appropriate answer to the user's message
+  <br /><br />
+  <strong>"<%= @message.body %>"</strong>
+  </font>
+  <br /><br />
+  <font size="5">Select the answer:</font>
+  <br /><br />
+  <% @answers.each do |answer| %>
+    <% 
+       if answer.upvotes.nil?
+         upvotes = 0
+       else
+         upvotes = answer.upvotes
+       end 
+       if answer.downvotes.nil?
+         downvotes = 0
+       else
+         downvotes = answer.downvotes
+       end 
+    %>
+    <font size="6"><em><%= link_to "#{answer.reply}", answer_path(answer) %></em></font> <font size="2">(Upvotes: <%= upvotes %>, Downvotes: <%= downvotes %>)</font>
+    <br />
+  <% end %>
+<% else %>
+  <font size="4">I could not find any answers for the detected intent -- <em><%= @intent.name %></em>.
+  <br /><br />
+  Please <%= link_to "add an answer", new_answer_path(:intent_id => @intent.id) %> for <em><%= @intent.name %></em>.</font>
+<% end %>

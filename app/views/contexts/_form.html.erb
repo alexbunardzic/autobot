@@ -1,16 +1,16 @@
-<%= form_for(@context_category) do |f| %>
-  <% if @context_category.errors.any? %>
+<%= form_for(@context) do |f| %>
+  <% if @context.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@context_category.errors.count, "error") %> prohibited this context_category from being saved:</h2>
+      <h2><%= pluralize(@context.errors.count, "error") %> prohibited this context from being saved:</h2>
 
       <ul>
-      <% @context_category.errors.full_messages.each do |message| %>
+      <% @context.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
+      <% if !@context_category.nil? %><%= f.hidden_field :context_category_id, { value: "#{@context_category.id}" } %><% end %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -20,11 +20,11 @@
     <%= f.text_area :description, rows:7, cols:75 %>
   </div>
   <div class="field">
-    <%= f.label :active %><br>
-    <%= f.check_box :active %>
+    Active <%= f.check_box :active %>
   </div>
   <br />
   <div class="actions">
     <%= f.submit "Save" %>
   </div>
 <% end %>
+<br />

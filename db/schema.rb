@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831233148) do
+ActiveRecord::Schema.define(version: 20160908171623) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "intent_id"
+    t.text     "reply"
+    t.integer  "upvotes",    default: 0
+    t.integer  "downvotes",  default: 0
+    t.boolean  "automatic",  default: false
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "answers", ["active"], name: "index_answers_on_active"
+  add_index "answers", ["automatic"], name: "index_answers_on_automatic"
+  add_index "answers", ["intent_id", "upvotes"], name: "index_answers_on_intent_id_and_upvotes"
 
   create_table "brands", force: :cascade do |t|
     t.integer  "product_id"
@@ -24,6 +39,15 @@ ActiveRecord::Schema.define(version: 20160831233148) do
 
   add_index "brands", ["name"], name: "index_brands_on_name", unique: true
 
+  create_table "categorized_messages", force: :cascade do |t|
+    t.integer  "intent_id"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "categorized_messages", ["intent_id", "message_id"], name: "index_categorized_messages_on_intent_id_and_message_id"
+
   create_table "context_categories", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -32,7 +56,18 @@ ActiveRecord::Schema.define(version: 20160831233148) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "context_categories", ["name"], name: "index_context_categories_on_name"
+  add_index "context_categories", ["name"], name: "index_context_categories_on_name", unique: true
+
+  create_table "contexts", force: :cascade do |t|
+    t.integer  "context_category_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active",              default: true
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "contexts", ["context_category_id", "name"], name: "index_contexts_on_context_category_id_and_name", unique: true
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,6 +79,27 @@ ActiveRecord::Schema.define(version: 20160831233148) do
   end
 
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id"
+
+  create_table "intents", force: :cascade do |t|
+    t.integer  "context_id"
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "intents", ["context_id", "name"], name: "index_intents_on_context_id_and_name", unique: true
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.text     "body"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "messages", ["body"], name: "index_messages_on_body"
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
 
   create_table "product_types", force: :cascade do |t|
     t.string   "name"

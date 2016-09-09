@@ -1,0 +1,20 @@
+<h1>Bot Says</h1>
+<br />
+<font size="4">I was able to associate user's message <em><%= @message.body %></em> with this intent:</font>
+<br />
+<font size="5"><%= @intent.name %></font>
+<br /><br />
+<font size="4">The most appropriate answer to this message might be:</font> <font size="5"><em><%= link_to "#{@top_answer.reply}", answer_path(@top_answer) %></em></font>.
+<font size="4"><% if @top_answer.upvotes > 0 %>I chose that answer because it has the most upvotes -- <%= @top_answer.upvotes %> so far.<% end %> Please click on it if you think it's the most appropriate answer. If you agree that it's the most appropriate answer and if you also agree that it would be OK for me to automatically reply to this message with this answer, please click <%= link_to "here", automatic_answer_path(@top_answer) %></font>
+<br /><br /><br />
+<% if @ordered_answers.size > 1 %>
+  <font size="4">Here are other possible answers, ranked from most suitable to least suitable for this message <em><%= @message.body %></em>:
+  <br /><br />
+  <% @ordered_answers.each do |answer| %>
+    <font size="5"><em><%= link_to "#{answer.reply}", answer_path(answer) %></em></font> <font size="2">(Upvotes: <%= answer.upvotes %>)</font>
+    <br />
+  <% end %>
+<% else %>
+    I wasn't able to find any other possible answers to this intent.
+<% end %>
+</font>

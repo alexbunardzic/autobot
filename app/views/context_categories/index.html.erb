@@ -1,13 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Context Categories</h1>
-
+<h1><%= @context_categories.size %> <%="Context Category".pluralize(@context_categories.size) %></h1>
+<br />
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Active</th>
+      <th align="left" valign="top">Name</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top">Description</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
+      <th align="left" valign="top"># Contexts</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +16,21 @@
   <tbody>
     <% @context_categories.each do |context_category| %>
       <tr>
-        <td><%= context_category.name %></td>
-        <td><%= context_category.description %></td>
-        <td><%= context_category.active %></td>
-        <td><%= link_to 'Show', context_category %></td>
-        <td><%= link_to 'Edit', edit_context_category_path(context_category) %></td>
-        <td><%= link_to 'Destroy', context_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td valign="top"><%= link_to "#{context_category.name}", context_category %></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top"><%= context_category.description %></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top" align="right"><%= link_to "#{context_category.contexts.size}", context_category %></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td valign="top">
+          <%= link_to(image_tag("plus.png", :alt => "add", :title => "Add Context"), new_context_path(:context_category_id => context_category.id)) %>
+        </td>
+        <td valign="top">
+          <%= link_to(image_tag("pencil.png", :alt => "edit", :title => "Edit Context Category"), edit_context_category_path(context_category)) %>
+        </td>
+        <td valign="top">
+          <%= link_to(image_tag("delete.png", :alt => "delete", :title => "Delete Context Category"), context_category, method: :delete, data: { confirm: 'Are you sure?' }) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Context category', new_context_category_path %>
+<%= link_to 'New Context Category', new_context_category_path %>

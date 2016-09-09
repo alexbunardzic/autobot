@@ -1,0 +1,6 @@
+<h1>Bot Says</h1>
+<br />
+<font size="3">Here is the most appropriate answer for the intent <em><%= Intent.find(@answer.intent_id).name %>:</em></font>
+<br /><br />
+<font size="5"><%= @answer.reply %></font>
+<br />(Upvotes: <%= @answer.upvotes %>, Downvotes: <%= @answer.downvotes %>)

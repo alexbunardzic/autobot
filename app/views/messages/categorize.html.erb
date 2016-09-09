@@ -1,0 +1,12 @@
+<br />
+<font size="6"><strong>Bot Says</strong></font>
+<br />
+<font size="5">I've received this message and could not find its intent:</font>
+<br />
+<h3><em>"<%= @message.body %>"</em></h3>
+<br />
+<font size="3">Please help me associate the above message with one of the intents by clicking on the appropriate intent below:</font>
+<br /><br />
+<% @intents.each do |intent| %>
+  <font size="5"><%= link_to "#{intent.name}", associate_message_path(@message, :intent_id => intent.id)  %><font size="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<% end %>

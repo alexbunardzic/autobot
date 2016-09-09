@@ -2,6 +2,8 @@
 <li><%= link_to 'About', page_path('about') %></li>
 <% if logged_in? %>
   <li><%= link_to "Inventory", product_types_path %></li>
+  <li><%= link_to "Contexts/Answers", context_categories_path %></li>
+  <li><%= link_to "Train the Bot", new_message_path %></li>
   <li><%= link_to "Logged in as: #{current_user.email}", users_path %></li>
   <li><%= link_to "Logout", logout_path, method: "delete" %></li>
 <% else %>
